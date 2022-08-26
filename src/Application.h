@@ -10,6 +10,8 @@ namespace Editia
         Application();
         ~Application();
 
+        void Render();
+
         inline const std::unique_ptr<Window> &getWindow() const { return window; }
 
     private:

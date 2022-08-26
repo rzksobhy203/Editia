@@ -47,4 +47,16 @@ namespace Editia
         window.reset();
         glfwTerminate();
     }
+
+    void Application::Render()
+    {
+        GLFWwindow *window = this->window->getNativeWindow();
+        while (!glfwWindowShouldClose(window))
+        {
+            // TODO: handle events
+            glfwPollEvents();
+
+            glfwSwapBuffers(window);
+        }
+    }
 }

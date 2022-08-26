@@ -3,7 +3,7 @@
 namespace Editia
 {
     Window::Window(const char *title, int width /*= 800*/, int height /*= 600*/)
-        : title(title), width(width), height(height)
+        : title(title)
     {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -32,5 +32,13 @@ namespace Editia
     {
         this->title = title;
         glfwSetWindowTitle(window, title);
+    }
+
+    WindowProps Window::getWindowProps() const
+    {
+        int width, height;
+        glfwGetFramebufferSize(window, &width, &height);
+
+        return {width, height, title};
     }
 }
