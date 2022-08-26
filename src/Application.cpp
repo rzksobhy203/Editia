@@ -25,10 +25,26 @@ namespace Editia
             LOG_ERROR("Failed to initialize GLFW!");
             exit(EXIT_FAILURE);
         }
+
+        glfwSetErrorCallback([](int error_code, const char *description)
+        {
+            LOG_ERROR("GLFW: ({0:x}) {1}", error_code, description);
+            exit(EXIT_FAILURE);
+        });
+
+        window = std::make_unique<Window>("Editia");
+
+        LOG_TRACE("Initializing GLAD...");
+        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+        {
+            LOG_ERROR("Failed to initialize GLAD!");
+            exit(EXIT_FAILURE);
+        }
     }
 
     Application::~Application()
     {
+        window.reset();
         glfwTerminate();
     }
 }
