@@ -20,7 +20,7 @@ namespace Editia
 
         void setTitle(const char *title);
 
-        inline WindowProps getWindowProps() const;
+        WindowProps getWindowProps() const;
         inline GLFWwindow *getNativeWindow() const { return window; }
 
     private:

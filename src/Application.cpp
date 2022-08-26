@@ -1,8 +1,10 @@
 #include "edpch.h"
 #include "Application.h"
+#include "ImGui/ImGui.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <imgui.h>
 
 namespace Editia
 {
@@ -51,12 +53,39 @@ namespace Editia
     void Application::Render()
     {
         GLFWwindow *window = this->window->getNativeWindow();
+        ImGuiLayer::ImGuiLayer::onAttach();
         while (!glfwWindowShouldClose(window))
         {
             // TODO: handle events
             glfwPollEvents();
 
+            // ImGui
+            ImGuiLayer::ImGuiLayer::FrameBegin();
+            {
+                ImGuiLayer::ImGuiLayer::DockspaceBegin();
+
+                if (ImGui::BeginMenuBar())
+                {
+                    if (ImGui::BeginMenu("File"))
+                    {
+                        if (ImGui::MenuItem("Close", nullptr, nullptr))
+                            glfwSetWindowShouldClose(window, true);
+
+                        ImGui::EndMenu();
+                    }
+
+                    ImGui::EndMenuBar();
+                }
+
+                ImGui::Begin("Explorer");
+                ImGui::End();
+
+                ImGuiLayer::ImGuiLayer::DockspaceEnd();
+            }
+            ImGuiLayer::ImGuiLayer::FrameEnd();
+
             glfwSwapBuffers(window);
         }
+        ImGuiLayer::ImGuiLayer::onDetach();
     }
 }

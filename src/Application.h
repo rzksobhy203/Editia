@@ -12,6 +12,7 @@ namespace Editia
 
         void Render();
 
+        inline static Application &get() { return *s_Instance; }
         inline const std::unique_ptr<Window> &getWindow() const { return window; }
 
     private:
