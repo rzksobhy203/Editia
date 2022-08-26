@@ -1,0 +1,7 @@
+# Direcories
+/out/
+/.vs/
+/.vscode/
+
+# Files
+*.zip

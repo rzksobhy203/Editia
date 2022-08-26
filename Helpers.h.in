@@ -1,0 +1,6 @@
+// Editia version
+#define Editia_VERSION_MAJOR @Editia_VERSION_MAJOR@
+#define Editia_VERSION_MINOR @Editia_VERSION_MINOR@
+
+// Source directory
+#define CMAKE_SOURCE_DIR "@CMAKE_SOURCE_DIR@"
