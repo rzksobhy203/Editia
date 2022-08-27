@@ -1,6 +1,7 @@
 #include "edpch.h"
 #include "Application.h"
 #include "ImGui/ImGui.h"
+#include "ImGui/MenuBar.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -54,6 +55,7 @@ namespace Editia
     {
         GLFWwindow *window = this->window->getNativeWindow();
         ImGuiLayer::ImGuiLayer::onAttach();
+        ImGuiLayer::MenuBar::MenuBar menubar;
         while (!glfwWindowShouldClose(window))
         {
             // TODO: handle events
@@ -64,18 +66,7 @@ namespace Editia
             {
                 ImGuiLayer::ImGuiLayer::DockspaceBegin();
 
-                if (ImGui::BeginMenuBar())
-                {
-                    if (ImGui::BeginMenu("File"))
-                    {
-                        if (ImGui::MenuItem("Close", nullptr, nullptr))
-                            glfwSetWindowShouldClose(window, true);
-
-                        ImGui::EndMenu();
-                    }
-
-                    ImGui::EndMenuBar();
-                }
+                menubar.Render();
 
                 ImGui::Begin("Explorer");
                 ImGui::End();
